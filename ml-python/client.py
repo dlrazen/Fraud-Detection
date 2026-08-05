@@ -3,30 +3,20 @@ import fraud_pb2
 import fraud_pb2_grpc
 
 def run():
-    # 1. Sunucunun çalıştığı porta bir kanal (channel) açıyoruz
-    channel = grpc.insecure_channel('localhost:50051')
-    
-    # 2. Bu kanal üzerinden iletişim kuracak köprüyü (stub) oluşturuyoruz
-    stub = fraud_pb2_grpc.FraudServiceStub(channel)
-    
-    print("[CLIENT] Sunucuya 6000 birimlik bir istek gönderiliyor...")
-    
-    # 3. Sözleşmeye uygun bir istek paketi (TransactionRequest) hazırlıyoruz
+    channel = grpc.insecure_channel('localhost:50051')  # sunucunuzun portunu kullanın
+    stub = fraud_pb2_grpc.FraudServiceStub(channel)   # ✅ FraudDetectionStub değil
+
     istek = fraud_pb2.TransactionRequest(
-        user_id="user_123",
-        amount=6000.0,
-        location="Istanbul",
-        device_id="iphone_13"
+        transaction_id="tx123",
+        amount=6000,
+        user_id="user1",
+        device_id="device1",
+        location="Istanbul"
     )
-    
-    # 4. İsteği gönderip cevabı bekliyoruz (Senkron çağrı)
-    cevap = stub.CheckTransaction(istek)
-    
-    # 5. Gelen cevabı ekrana yazdırıyoruz
-    print(f"[CLIENT] Gelen Cevap:")
-    print(f" - Risk Skoru: {cevap.risk_score}")
-    print(f" - Onaylandı mı?: {cevap.is_approved}")
-    print(f" - Sebep: {cevap.reason}")
+
+    print("[CLIENT] Sunucuya 6000 birimlik bir istek gönderiliyor...")
+    cevap = stub.CheckTransaction(istek)   # ✅ TransactionResponse dönecek, RiskResponse değil
+    print(cevap)
 
 if __name__ == '__main__':
     run()

@@ -13,6 +13,8 @@ message TransactionRequest {
   string transaction_id = 1;
   double amount = 2;
   string user_id = 3;
+  string device_id = 4;
+  string location = 5;
 }
 
 // 3. Yanıt (Response) Mesajı: Sunucudan dönecek verinin yapısı.

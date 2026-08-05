@@ -24,10 +24,10 @@ class FraudServiceServicer(fraud_pb2_grpc.FraudServiceServicer):
             sebep = "Güvenli işlem"
             
         # 3. Sonucu sözleşmedeki RiskResponse formatına uygun şekilde dönüyoruz
-        return fraud_pb2.RiskResponse(
-            risk_score=skor,
-            is_approved=onay,
-            reason=sebep
+        return fraud_pb2.TransactionResponse(
+        is_fraudulent=True,
+        risk_score=0.85,
+        message="Şüpheli işlem"
         )
 
 # 4. Sunucuyu başlatan ana fonksiyon
