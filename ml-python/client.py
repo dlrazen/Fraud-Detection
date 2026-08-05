@@ -7,7 +7,7 @@ def run():
     channel = grpc.insecure_channel('localhost:50051')
     
     # 2. Bu kanal üzerinden iletişim kuracak köprüyü (stub) oluşturuyoruz
-    stub = fraud_pb2_grpc.FraudDetectionStub(channel)
+    stub = fraud_pb2_grpc.FraudServiceStub(channel)
     
     print("[CLIENT] Sunucuya 6000 birimlik bir istek gönderiliyor...")
     

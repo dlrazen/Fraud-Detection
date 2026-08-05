@@ -7,7 +7,7 @@ import fraud_pb2
 import fraud_pb2_grpc
 
 # 1. Sözleşmedeki servisi miras alan bir sınıf oluşturuyoruz
-class FraudDetectionServicer(fraud_pb2_grpc.FraudDetectionServicer):
+class FraudServiceServicer(fraud_pb2_grpc.FraudServiceServicer):
     
     # 2. .proto dosyasında tanımladığımız metodu (fonksiyonu) yazıyoruz
     def CheckTransaction(self, request, context):
@@ -36,7 +36,7 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     
     # Kendi yazdığımız sınıfı, gRPC sunucusuna bağlıyoruz
-    fraud_pb2_grpc.add_FraudDetectionServicer_to_server(FraudDetectionServicer(), server)
+    fraud_pb2_grpc.add_FraudServiceServicer_to_server(FraudServiceServicer(), server)
     
     # Sunucuyu 50051 portunda dinlemeye açıyoruz
     server.add_insecure_port('[::]:50051')
