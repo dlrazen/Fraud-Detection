@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package fraud_detection;
+
+// 1. Servis Tanımı: İstemcinin çağırabileceği fonksiyonları (RPC) burada tanımlarsın.
+service FraudService {
+  // Unary (Tekil) RPC: Bir istek gider, bir yanıt döner.
+  rpc CheckTransaction (TransactionRequest) returns (TransactionResponse);
+}
+
+// 2. İstek (Request) Mesajı: Gönderilecek verinin yapısı.
+message TransactionRequest {
+  string transaction_id = 1;
+  double amount = 2;
+  string user_id = 3;
+}
+
+// 3. Yanıt (Response) Mesajı: Sunucudan dönecek verinin yapısı.
+message TransactionResponse {
+  bool is_fraudulent = 1;
+  float risk_score = 2;
+  string message = 3;
+}
