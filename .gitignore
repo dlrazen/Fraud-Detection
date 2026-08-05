@@ -1,0 +1,40 @@
+# ========================
+# ORTAK / ÇEVRESEL DOSYALAR
+# ========================
+.env
+.DS_Store
+*.log
+
+# ========================
+# NODE.JS (BACKEND) İÇİN
+# ========================
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# ========================
+# PYTHON (ML) İÇİN
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.pytest_cache/
+
+# ========================
+# gRPC ÜRETİLEN DOSYALAR
+# ========================
+# Kural: Python için otomatik üretilenleri Git'e atma!
+*_pb2.py
+*_pb2_grpc.py
+*_pb2.pyi
+
+# ========================
+# MAKİNE ÖĞRENMESİ DOSYALARI
+# ========================
+# Kural: 100 MB'lık veri setleri Git'i dondurur.
+*.csv
+# Eğer eğitilmiş modeliniz (.pkl) çok büyükse aşağıdaki satırın başındaki diyezi (#) kaldırın:
+# *.pkl
